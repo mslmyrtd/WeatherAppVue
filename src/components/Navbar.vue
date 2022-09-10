@@ -1,7 +1,22 @@
 <script setup>
 import { ref } from 'vue';
+import WeatherView from '@/views/WeatherView.vue';
 
 const cityName=ref('')
+const weather=ref({})
+const apiKey='f2fe6b79af3ac3ebc408889313114753'
+const urlBase='https://api.openweathermap.org/data/2.5'
+const getWeather=async(e)=>{
+  if(e.key=='Enter'){
+    await fetch(`${urlBase}/weather?q=${cityName.value}&units=metric&appid=${apiKey}`).then(res=>{
+      return res.json();
+    }).then(setResults);
+  }
+}
+const setResults=(results)=>{
+  weather.value=results;
+console.log( weather.value)
+}
 </script>
 <template>
   <header
@@ -42,6 +57,7 @@ const cityName=ref('')
                   class="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:border-indigo-500 focus:text-gray-900 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
                   placeholder="Search"
                   type="search"
+                  @keypress="getWeather"
                 />
               </div>
             </div>
@@ -55,5 +71,5 @@ const cityName=ref('')
       </div>
     </div>
   </header>
- 
+ <WeatherView :weatherInfo='weather'/>
 </template>
