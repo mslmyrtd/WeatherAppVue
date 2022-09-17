@@ -10,10 +10,10 @@ const toggleModal = () => {
 </script>
 
 <template>
-  <header class="sticky top-0 bg-slate-200 shadow-lg">
+  <header class="sticky top-0 bg-slate-200 shadow-lg z-10">
     <nav class="container flex flex-col sm:flex-row items-center gap-4 py-6">
       <RouterLink :to="{ name: 'home' }">
-        <div class="item-center gap-3">
+        <div class="flex item-center gap-3 ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
