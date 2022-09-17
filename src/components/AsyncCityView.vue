@@ -69,5 +69,25 @@ console.log(weatherData);
 
 </div>
 <hr class="border-black border-opacity-10 border w-full" />
+<!-- Hourly Weather -->
+<div class="max-w-screen-md w-full py-12 ">
+  <h2 class="mb-4">Hourly Weather</h2>
+  <div class="flex gap-10 overflow-x-scroll" >
+    <div v-for="hourData in weatherData.hourly" :key="hourData.dt" class="flex flex-col gap-4 items-center">
+    <p class="whitespace-nowrap text-md" >
+{{
+  new Date(
+    hourData.currentTime
+  ).toLocaleTimeString("en-us",{
+    hour:"numeric",
+  })
+}} </p>
+<img :src="`http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`" alt="" class="w-auto h-[50px] object-cover">
+<p class="text-xl" >{{Math.round(hourData.temp)}}&deg;</p>
+    </div>
+  </div>
+</div>
+
+
   </div>
 </template>
