@@ -1,9 +1,35 @@
 <script setup>
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 import Modal from "@/components/Modal.vue";
 import { ref } from "vue";
+import { uid } from 'uid';
 
+const route =useRoute()
+const router=useRouter()
 const modalActive = ref(null);
+const savedCities=ref([])
+const addCity=()=>{
+  if(localStorage.getItem('savedCities')){
+    savedCities.value=JSON.parse(localStorage.getItem('savedCities'))
+  }
+  const locationObj={
+    id:uid(),
+    state:route.params.state,
+    city:route.params.city,
+    coords:{
+      lat:route.query.lat,
+      lng:route.query.lng
+    }
+  };
+  savedCities.value.push(locationObj)
+  localStorage.setItem(
+    "savedCities", JSON.stringify(savedCities.value)
+  );
+  let query=Object.assign({},route.query);
+  delete query.preview;
+  router.replace({query})
+}
+
 const toggleModal = () => {
   modalActive.value = !modalActive.value;
 };
@@ -54,6 +80,8 @@ const toggleModal = () => {
           stroke-width="1.5"
           stroke="currentColor"
           class="w-6 h-6 text-xl hover:text-slate-400 duration-150 cursor-pointer"
+          @click="addCity"
+          v-if="route.query.preview"
         >
           <path
             stroke-linecap="round"
