@@ -32,11 +32,10 @@ const goToCityView=(city)=>{
     params:{
       state:city.state,
       city:city.city},
-      query:{lat:city.coords.lat,
+      query:{id:city.id, lat:city.coords.lat,
       lng:city.coords.lng},
     })
   }
-
 </script>
 
 <template>

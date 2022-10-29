@@ -31,6 +31,7 @@ const addCity = () => {
   localStorage.setItem("savedCities", JSON.stringify(savedCities.value));
   let query = Object.assign({}, route.query);
   delete query.preview;
+  query.id=locationObj.id
   router.replace({ query });
 };
 
@@ -101,7 +102,7 @@ const toggleModal = () => {
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-6 h-6 text-xl hover:text-slate-400 duration-150 cursor-pointer"
+          class="w-6 h-6 text-xl  duration-150 cursor-pointer"
         >
           <path
             stroke-linecap="round"
@@ -117,7 +118,7 @@ const toggleModal = () => {
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-6 h-6 text-2xl hover:text-slate-400 duration-150 cursor-pointer"
+          class="w-6 h-6 text-2xl  duration-150 cursor-pointer"
         >
           <path
             stroke-linecap="round"
