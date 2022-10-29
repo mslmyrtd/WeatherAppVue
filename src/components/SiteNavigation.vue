@@ -3,16 +3,16 @@ import { RouterLink, useRoute, useRouter } from "vue-router";
 import Modal from "@/components/Modal.vue";
 import { ref } from "vue";
 import { uid } from "uid";
-import {useDark,useToggle} from "@vueuse/core"
+import { useDark, useToggle } from "@vueuse/core";
 
 const route = useRoute();
 const router = useRouter();
 const modalActive = ref(null);
 const savedCities = ref([]);
 
-const isDark=useDark();
-const toggleDark=useToggle(isDark)
-console.log(isDark.value)
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
+console.log(isDark.value);
 
 const addCity = () => {
   if (localStorage.getItem("savedCities")) {
@@ -55,7 +55,7 @@ const toggleModal = () => {
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+              d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"
             />
           </svg>
           <p class="text-2xl">Weather App</p>
@@ -94,8 +94,8 @@ const toggleModal = () => {
           />
         </svg>
         <svg
-        v-if="isDark"
-        @click="toggleDark()"
+          v-if="isDark"
+          @click="toggleDark()"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -109,22 +109,22 @@ const toggleModal = () => {
             d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
           />
         </svg>
-         <svg
-         v-else
-         @click="!toggleDark()"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-6 h-6 text-2xl hover:text-slate-400 duration-150 cursor-pointer"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-            />
-          </svg>
+        <svg
+          v-else
+          @click="!toggleDark()"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6 text-2xl hover:text-slate-400 duration-150 cursor-pointer"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+          />
+        </svg>
       </div>
       <Modal :modalActive="modalActive" @close-modal="toggleModal">
         <div class="text-black">
