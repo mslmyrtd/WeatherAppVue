@@ -1,5 +1,5 @@
 {
-  "name": "e-commerce",
+  "name": "weather-app",
   "version": "0.0.7",
   "scripts": {
     "dev": "vite",
