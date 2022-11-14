@@ -21,7 +21,7 @@ defineEmits(["close-modal"]);
         >
           <slot />
           <button
-            class="text-slate-100 mt-8 bg-blue-400 dark:bg-blue-300 py-2 px-6 rounded-md"
+            class="text-slate-100 mt-8 bg-blue-400 dark:bg-blue-500 py-2 px-6 rounded-md"
             @click="$emit('close-modal')"
           >
             Close
