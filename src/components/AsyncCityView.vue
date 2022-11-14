@@ -2,8 +2,7 @@
 import axios from "axios";
 import { useRoute, useRouter } from "vue-router";
 
-
-const router=useRouter()
+const router = useRouter();
 const route = useRoute();
 const apiKey = "f2fe6b79af3ac3ebc408889313114753";
 const urlBase = "https://api.openweathermap.org/data/2.5";
@@ -15,9 +14,7 @@ const getWeatherData = async () => {
     );
     //cal current date & time
     const localOffset = new Date().getTimezoneOffset() * 60000;
-    console.log(localOffset);
     const utc = weatherData.data.current.dt * 1000 + localOffset;
-    console.log(utc);
     weatherData.data.currentTime =
       utc + 1000 * weatherData.data.timezone_offset;
     // cal hourly weather offset
@@ -25,28 +22,28 @@ const getWeatherData = async () => {
       const utc = hour.dt * 1000 + localOffset;
       hour.currentTime = utc + 1000 * weatherData.data.timezone_offset;
     });
+    await new Promise((res) => setTimeout(res, 500));
     return weatherData.data;
   } catch (error) {
-    console.log(error);
   }
 };
 const weatherData = await getWeatherData();
-
-const removeCity=()=>{
-  const cities=JSON.parse(localStorage.getItem("savedCities"));
-  const updatedCities=cities.filter((city)=>city.id !==route.query.id);
-  localStorage.setItem('savedCities',JSON.stringify(updatedCities));
+const removeCity = () => {
+  const cities = JSON.parse(localStorage.getItem("savedCities"));
+  const updatedCities = cities.filter((city) => {
+    city.id !== route.query.id});
+  localStorage.setItem("savedCities", JSON.stringify(updatedCities));
+  
   router.push({
-    name:"home"
-  })
-}
-
+    name: "home",
+  });
+};
 </script>
 
 <template>
-  <div class="flex flex-col flex-1 items-center">
+  <div class="flex flex-col flex-1 items-center dark:text-slate-200 px-5">
     <!-- Banner -->
-    <div class="p-4 bg-slate-300 w-full text-center" v-if="route.query.preview">
+    <div class="p-4 bg-blue-300 w-full text-center  dark:bg-blue-500" v-if="route.query.preview">
       <p>
         You are currently previewing this city, click the "+" icon to start
         tracking this city.
@@ -139,8 +136,9 @@ const removeCity=()=>{
       </div>
     </div>
     <div
-      class="flex items-center gap-2 py-12 text-slate-600 cursor-pointer duration-150 hover:text-red-500"
+      class="flex items-center gap-2 py-12 cursor-pointer duration-150 hover:text-red-500"
       @click="removeCity"
+      v-if="!route.query.preview"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +154,7 @@ const removeCity=()=>{
           d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
         />
       </svg>
-      <p>Remove City</p>
+      <p >Remove City</p>
     </div>
   </div>
 </template>
