@@ -12,7 +12,6 @@ const savedCities = ref([]);
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-console.log(isDark.value);
 
 const addCity = () => {
   if (localStorage.getItem("savedCities")) {
@@ -41,7 +40,7 @@ const toggleModal = () => {
 </script>
 
 <template>
-  <header class="sticky top-0 bg-slate-200 shadow-lg z-10 dark:bg-slate-400">
+  <header class="sticky top-0 bg-blue-200 shadow-lg z-10 dark:bg-blue-400 dark:text-slate-200">
     <nav class="container flex flex-col sm:flex-row items-center gap-4 py-6">
       <RouterLink :to="{ name: 'home' }">
         <div class="flex item-center gap-3">
@@ -69,7 +68,7 @@ const toggleModal = () => {
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-6 h-6 text-xl hover:text-slate-400 duration-150 cursor-pointer"
+          class="w-6 h-6 text-xl hover:text-blue-400 duration-150 cursor-pointer"
           @click="toggleModal"
         >
           <path
@@ -86,7 +85,7 @@ const toggleModal = () => {
           stroke="currentColor"
           class="w-6 h-6 text-xl hover:text-slate-400 duration-150 cursor-pointer"
           @click="addCity"
-          v-if="route.query.preview"
+          v-if="route.query.preview "
         >
           <path
             stroke-linecap="round"
@@ -128,7 +127,7 @@ const toggleModal = () => {
         </svg>
       </div>
       <Modal :modalActive="modalActive" @close-modal="toggleModal">
-        <div class="text-black">
+        <div class="text-black dark:text-slate-200">
           <h1 class="text-2xl mb-1">About:</h1>
           <p class="mb-4">
             The Weather App allows you to track the current and future weather
