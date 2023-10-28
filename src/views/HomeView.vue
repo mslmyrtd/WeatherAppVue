@@ -5,6 +5,7 @@ import { useRouter } from "vue-router";
 import CityList from "@/components/CityList.vue";
 import CityCardSkeleton from "@/components/CityCardSkeleton.vue";
 import { XIcon } from "@heroicons/vue/outline";
+import { vAutofocus } from "@/shared/directives/autofocus";
 
 const router = useRouter();
 const mapboxAPIKey =
@@ -56,9 +57,12 @@ const handleClear = () => {
 
 <template>
   <main class="container dark:text-slate-100">
-    <div class="pt-4 mb-8 relative flex justify-end items-center lg:w-2/4 sm:w-full">
+    <div
+      class="pt-4 mb-8 relative flex justify-end items-center lg:w-2/4 sm:w-full"
+    >
       <input
         type="text"
+        v-autofocus
         placeholder="Search for a city or state"
         v-model="searchQuery"
         @input="getSearchResults"

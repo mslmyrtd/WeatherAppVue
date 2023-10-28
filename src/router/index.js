@@ -21,6 +21,14 @@ const router = createRouter({
         title:"Weather"
       }
     },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "PageNotFound",
+      component: () => import("@/views/PageNotFound.vue"),
+      meta:{
+        title:"NotFound"
+      }
+    },
   ]
 })
 router.beforeEach((to,from,next)=>{
